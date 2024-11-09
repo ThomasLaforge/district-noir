@@ -67,10 +67,18 @@ export class Game {
   }
 
   getScores() {
-    return this.players.map((player) => ({
-      name: player.name,
-      score: player.getScore()
-    }));
+    const packs = this.players.map((player) => {
+      return player.getPacks();
+    });
+
+    const scores = this.players.map((player, index) => {
+      let score = player.getScore();
+
+      return {
+        name: player.name,
+        score
+      };
+    });
   }
 
   get currentPlayer() {
